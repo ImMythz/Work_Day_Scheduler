@@ -7,19 +7,9 @@ function displayDate() {
 displayDate()
  
 // Keeps track of the current time
-function currentTime() {
-    const currentTime = moment().hour();
-    $("#currentHour").text(currentTime)
-}
-
-currentTime()
-
-
-// Determine whether its AM or PM
-
-
-// Sets up Local Storage
-
+const currentTime = moment().hour();
+$("#currentHour").text(currentTime)
+console.log(currentTime)
 
 // Creates one hour time blocks
 function createTable() {
@@ -35,7 +25,7 @@ function createTable() {
         hourBlock.classList.add('col-sm-2')
         const hourDisplay = document.createElement('p')
         hourDisplay.classList.add('hour')
-        hourDisplay.innerText = i
+        hourDisplay.innerText = TOD(i)
         hourBlock.appendChild(hourDisplay)
 
         // Creates a block for the text area
@@ -64,7 +54,29 @@ function createTable() {
         row.append(saveBlock)
 
         // Adds the created row to the container in the HMTL
-        $(".container").append(row)   
+        $(".container").append(row)
+    }
+
+    // Determines if an hour block is 'past', 'present' or 'future'
+    $('.description').each(function() {
+        const whichHour = $(this).attr('id')
+        console.log(whichHour)
+        //Creating condition to compare time and change colors
+        if (whichHour < currentTime) {
+            $(this).addClass('past')
+        } else if(whichHour === currentTime){
+            $(this).addClass('present')
+        } else {
+            $(this).addClass('future')
+        }
+    })
+
+    // Determines whether its AM or PM
+    function TOD(hours){
+        let ampm = hours >= 12 ? 'pm' : 'am'
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        return hours + ampm
     }
 }
 
@@ -78,22 +90,6 @@ $('.saveBtn').on('click', function(){
     console.log(timeBlockKey)
 })
 
-
-
-// Determines if an hour block is 'past', 'present' or 'future'
-
-$('.description').each(function() {
-    const whichHour = parseInt($(this).attr('id'))
-    console.log(whichHour)
-    //Creating condition to compare time and change colors
-    if(whichHour < currentTime) {
-        $(this).addClass('past')
-    } else if(whichHour === currentTime){
-        $(this).addClass('present')
-    } else {
-        $(this).addClass('future')
-    }
-})
 
 
 
