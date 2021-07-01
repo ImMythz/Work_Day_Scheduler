@@ -20,12 +20,13 @@ currentTime()
 // Creates one hour time blocks
 function createTable() {
     for ( let i = 9; i < 18; i++ ) {
+        // Creates a row for each hour block created
         const row = document.createElement('div')
         row.setAttribute('id',`'${i}'`)
         row.classList.add('row')
         console.log("row created")
 
-        // Creates block for the hour 
+        // Creates block for the hour to be displayed in 
         const hourBlock =  document.createElement('div')
         hourBlock.classList.add('col-sm-2')
         const hourDisplay = document.createElement('p')
@@ -41,8 +42,24 @@ function createTable() {
         textArea.classList.add('description')
         textArea.placeholder = 'Add Event'
         textBlock.appendChild(textArea)
+
+        // Creates a button and block for a save button
+        const saveBlock = document.createElement('div')
+        saveBlock.classList.add('col-sm-1')
+        const saveButton  = document.createElement('button')
+        saveButton.classList.add('saveBtn')
+        saveButton.setAttribute('id',`'${i}'`)
+        const saveIcon = document.createElement('i')
+        saveIcon.classList.add('fas', 'fa-save')
+        saveButton.appendChild(saveIcon)
+        saveBlock.appendChild(saveButton)
+        
+        // Adds all the blocks to the row initially created
         row.append(hourBlock)
         row.append(textBlock)
+        row.append(saveBlock)
+
+        // Adds the created row to the container in the HMTL
         $(".container").append(row)
     }
 }
