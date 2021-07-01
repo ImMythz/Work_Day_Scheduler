@@ -8,11 +8,15 @@ displayDate()
  
 // Keeps track of the current time
 function currentTime() {
-    const currentTime = moment().format("hh:mm:ss a");
-    $("").text(currentTime)
+    const currentTime = moment().hour();
+    $("#currentHour").text(currentTime)
 }
 
 currentTime()
+
+
+// Determine whether its AM or PM
+
 
 // Sets up Local Storage
 
@@ -38,7 +42,7 @@ function createTable() {
         const textBlock = document.createElement('div')
         textBlock.classList.add('col-sm-8')
         const textArea = document.createElement('textarea')
-        textArea.setAttribute('id',`'text${i}'`)
+        textArea.setAttribute('id',`'${i}'`)
         textArea.classList.add('description')
         textArea.placeholder = 'Add Event'
         textBlock.appendChild(textArea)
@@ -60,17 +64,36 @@ function createTable() {
         row.append(saveBlock)
 
         // Adds the created row to the container in the HMTL
-        $(".container").append(row)
+        $(".container").append(row)   
     }
 }
 
 createTable();
 
-// Determine whether its AM or PM
+// Sets up Local Storage
+$('.saveBtn').on('click', function(){
+    const timeBlockKey = $(this).attr('id')
+    const textAreaVal = $(this).parent().siblings().children('.description').val();
+    localStorage.setItem(timeBlockKey, textAreaVal)
+    console.log(timeBlockKey)
+})
+
 
 
 // Determines if an hour block is 'past', 'present' or 'future'
 
+$('.description').each(function() {
+    const whichHour = parseInt($(this).attr('id'))
+    console.log(whichHour)
+    //Creating condition to compare time and change colors
+    if(whichHour < currentTime) {
+        $(this).addClass('past')
+    } else if(whichHour === currentTime){
+        $(this).addClass('present')
+    } else {
+        $(this).addClass('future')
+    }
+})
 
 
 
