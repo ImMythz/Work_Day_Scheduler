@@ -15,8 +15,8 @@ Simple work day calendar that allows the user to write and save notes for each h
 
 ## Demo
 Here are a few screenshots of what the quiz looks like
-<img src='Images\screenshot1.jpeg' alt='screenshot one'>
-<img src='Images\screenshot2.jpeg' alt='screenshot two'>
+<img src='Images\screenshot1.jpg' alt='screenshot one'>
+<img src='Images\screenshot2.jpg' alt='screenshot two'>
 
 <a href="https://immythz.github.io/Work_Day_Scheduler/" target="_blank">Click here to go to the deployed application</a>
 
