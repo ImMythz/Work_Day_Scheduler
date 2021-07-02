@@ -14,7 +14,7 @@ Simple work day calendar that allows the user to write and save notes for each h
 3. Then open the repository in your code editor of choice (ex: VSCode)
 
 ## Demo
-Here are a few screenshots of what the quiz looks like
+Here are a few screenshots of what the Work Day Scheduler looks like
 <img src='docs\assets\images\screenshot1.jpeg' alt='screenshot one'>
 <img src='docs\assets\images\screenshot2.jpeg' alt='screenshot two'>
 
