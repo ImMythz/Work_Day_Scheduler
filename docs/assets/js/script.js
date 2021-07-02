@@ -1,3 +1,8 @@
+// Keeps track of the current time
+const currentTime = moment().hour();
+$("#currentHour").text(currentTime)
+
+
 // Displays the current date in the header
 function displayDate() {
     const currentDate = moment().format("dddd, MMMM Do YYYY");
@@ -5,22 +10,14 @@ function displayDate() {
 }
 
 displayDate()
- 
-// Keeps track of the current time
-
-const currentTime = moment().hour();
-$("#currentHour").text(currentTime)
-console.log(currentTime)
 
 // Creates one hour time blocks
 function createTable() {
     for ( let i = 9; i < 18; i++ ) {
-        
         // Creates a row for each hour block created
         const row = document.createElement('div')
         row.setAttribute('id',`${i}`)
         row.classList.add('row')
-        console.log("row created")
 
         // Creates block for the hour to be displayed in 
         const hourBlock =  document.createElement('div')
@@ -66,9 +63,6 @@ function createTable() {
     // Determines if an hour block is 'past', 'present' or 'future'
     $('.description').each(function() {
         const whichHour = $(this).attr('id')
-        const something = parseInt(whichHour)
-        console.log(typeof something)
-        console.log(typeof currentTime)
         //Creating condition to compare time and change colors
         if (parseInt(whichHour) < currentTime) {
             $(this).addClass('past')
@@ -86,8 +80,6 @@ function createTable() {
         hours = hours ? hours : 12;
         return hours + ampm
     }
-
-
 }
 
 createTable();
@@ -95,9 +87,8 @@ createTable();
 // Set data in Local Storage
 $('.saveBtn').on('click', function(){
     const timeBlockKey = $(this).attr('id')
-    const textAreaVal = $(this).parent().siblings().children('.description').val();
-    localStorage.setItem(timeBlockKey, textAreaVal)
-    console.log(timeBlockKey)
+    const textAreaValue = $(this).parent().siblings().children('.description').val();
+    localStorage.setItem(timeBlockKey, textAreaValue)
 })
 
 
