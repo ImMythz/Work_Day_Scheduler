@@ -1,6 +1,8 @@
 // Keeps track of the current time
-const currentTime = moment().hour();
-$("#currentHour").text(currentTime)
+const currentTime = 12
+// const currentTime = moment().hour();
+// $("#currentHour").text(currentTime)
+
 
 
 // Displays the current date in the header
@@ -62,11 +64,11 @@ function createTable() {
 
     // Determines if an hour block is 'past', 'present' or 'future'
     $('.description').each(function() {
-        const whichHour = $(this).attr('id')
+        const whichHour = parseInt($(this).attr('id'))
         //Creating condition to compare time and change colors
-        if (parseInt(whichHour) < currentTime) {
+        if (whichHour < currentTime) {
             $(this).addClass('past')
-        } else if(whichHour == currentTime){
+        } else if(whichHour === currentTime){
             $(this).addClass('present')
         } else {
             $(this).addClass('future')
